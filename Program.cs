@@ -100,12 +100,17 @@ class Program
         .Where(x => x.Age > 30 && x.Specialization == ResourceType.Stone)
         .Select(x => x.Name);
 
-        foreach( var el in stone)
+        foreach (var el in stone)
         {
             System.Console.WriteLine(el);
         }
         System.Console.WriteLine("-------------------------------");
 
+        city.OnKingdomAttacked += city.ArmyBarracks.DeployTroops;
+
+        
+
+        city.Alarm("Орк");
     }
 
 }
