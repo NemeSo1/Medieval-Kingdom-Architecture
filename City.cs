@@ -6,15 +6,21 @@ namespace mini;
 
 class City
 {
+    public event Action<string> OnKingdomAttacked;
     public Dictionary<ResourceType, int> Resourse = new Dictionary<ResourceType, int>();
     public List<Citizen> Population = new List<Citizen>();
     public Barracks<Soldier> ArmyBarracks = new Barracks<Soldier>();
 
-  
+
 
     public void AddCitizen(Citizen citizen)
     {
         Population.Add(citizen);
+
+        if (citizen is IHideable hideablePerson)
+        {
+            this.OnKingdomAttacked += hideablePerson.Hide;
+        }
     }
 
     public void CollectTaxes()
@@ -38,5 +44,10 @@ class City
         }
     }
 
+    public void Alarm(string enemy)
+    {
+        System.Console.WriteLine($"Тривога! На нас напав ворог {enemy}");
+        OnKingdomAttacked?.Invoke(enemy);
+    }
 
 }
