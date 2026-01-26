@@ -1,7 +1,7 @@
 using System;
 
 namespace mini;
-
+//Base
 
 class Soldier : Citizen
 {
@@ -15,4 +15,5 @@ class Soldier : Citizen
     {
         System.Console.WriteLine($"Солдат {Name} партулює місто");
     }
+
 }
